@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ke7s043n5p4y"]
+
+[ext_resource type="Texture2D" uid="uid://dkrf2v8jr22vw" path="res://icon.svg" id="1_7x7pb"]
+[ext_resource type="PackedScene" uid="uid://0q2nf4f4fv0f" path="res://Scenes/Characters/character.tscn" id="1_f1n8c"]
+[ext_resource type="Script" uid="uid://dqkkguenk18vh" path="res://Code/Levels/level.gd" id="1_lkqqh"]
+[ext_resource type="Resource" uid="uid://ce7w52outmc3j" path="res://Data/Characters/debug_character.tres" id="3_yjxcc"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_lkqqh")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(51, 60)
+texture = ExtResource("1_7x7pb")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(264, 138)
+texture = ExtResource("1_7x7pb")
+
+[node name="character" parent="." instance=ExtResource("1_f1n8c")]
+position = Vector2(144, 96)
+debug_data = ExtResource("3_yjxcc")
+debug_spawn = true
+
+[node name="projectile_layer" type="Node2D" parent="." groups=["projectile_layer"]]

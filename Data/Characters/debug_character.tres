@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://ce7w52outmc3j"]
+
+[ext_resource type="Script" uid="uid://beh374u0riuvq" path="res://Code/Characters/character_data.gd" id="1_3e0v5"]
+
+[resource]
+script = ExtResource("1_3e0v5")
+acceleration = 500.0
+friction = 400.0
+starting_speed = 20.0
+starting_hp = 100
+starting_damage_reduction = 0
+starting_damage_negate = 0.0
+starting_invulnerability_time = 0.2
+starting_skill_speed = 1.0
+starting_damage = 0.0
+starting_crit_chance = 0.0
+starting_crit_damage = 0.0
+starting_xp_gain = 0.0
+starting_currency_drop = 0.0
+starting_parts_drop = 0.0
+starting_attachment_points = 2
+metadata/_custom_type_script = "uid://beh374u0riuvq"
