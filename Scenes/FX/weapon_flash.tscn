@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk7weu44ho0gl"]
+
+[ext_resource type="SpriteFrames" uid="uid://cwn8xxqt0kevn" path="res://Data/Weapons/FX/debug_weapon_flash.tres" id="1_rim83"]
+
+[node name="WeaponFlash" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_rim83")
+animation = &"flash_2"
+frame = 4
+frame_progress = 1.0

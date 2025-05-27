@@ -29,6 +29,8 @@ func _process(_delta: float) -> void:
 func _shoot() -> void:
 	if current_count < weapon_data.projectile_count:
 		_spawn_bullet()
+		parent.weapon.play(&"shoot")
+		_trigger_flash()
 		current_count += 1
 		if weapon_data.count_delay > 0.0: get_tree().create_timer(weapon_data.count_delay).timeout.connect(_shoot)
 		else: get_tree().create_timer(weapon_data.shoot_delay).timeout.connect(_end_shoot)
@@ -57,3 +59,11 @@ func _get_bullet() -> Projectile:
 		return projectile.instantiate()
 	else:
 		return bullet_pool.pop_front()
+
+
+func _trigger_flash() -> void:
+	var i:int = randi_range(1,4)
+	parent.weapon_flash.show()
+	parent.weapon_flash.play(&"flash_" + str(i))
+	await parent.weapon_flash.animation_finished
+	parent.weapon_flash.hide()
