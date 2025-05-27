@@ -185,9 +185,11 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eu1pv"]
-radius = 2.82843
+radius = 3.0
 
-[node name="character" type="CharacterBody2D"]
+[node name="character" type="CharacterBody2D" groups=["player"]]
+top_level = true
+light_mask = 2
 script = ExtResource("1_lmtek")
 
 [node name="body" type="AnimatedSprite2D" parent="."]

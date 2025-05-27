@@ -33,7 +33,7 @@ func trigger() -> void:
 
 func get_damage() -> Damage:
 	active = false
-	get_tree().create_timer(0.1).timeout.connect(_destroy)
+	get_tree().create_timer(0.02).timeout.connect(_destroy)
 	if damage: damage.attack_owner = attack_owner
 	else: 
 		damage = Damage.new()

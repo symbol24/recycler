@@ -11,7 +11,7 @@ func _ready() -> void:
 	Signals.SpawnReticle.connect(_spawn_reticle)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if UI.mouse_controls and is_instance_valid(reticle): 
 		reticle.position = get_local_mouse_position()
 		Signals.ReticlePosition.emit(reticle.global_position)
