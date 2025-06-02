@@ -28,6 +28,9 @@ class_name CharacterData extends Resource
 
 var current_hp:int
 var max_hp:int
+var current_exp := 0
+var total_exp := 0
+var current_level := 1
 
 
 func setup_data() -> void:
@@ -36,7 +39,9 @@ func setup_data() -> void:
 
 
 func get_var(variable := &"") -> Variant:
-	if get(&"starting_" + variable):
+	if get(&"starting_" + variable) != null:
+		#if variable != &"speed": print("Variable %s: %s" % [variable, get(&"starting_" + variable)])
 		return get(&"starting_" + variable)
 	
+	#print(variable, " not found")
 	return 0

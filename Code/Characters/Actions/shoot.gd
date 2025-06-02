@@ -46,9 +46,10 @@ func _end_shoot() -> void:
 func _spawn_bullet() -> void:
 	var new_proj:Projectile = _get_bullet()
 	if is_instance_valid(new_proj):
+		new_proj.attack_owner = parent
 		projectile_layer.add_child(new_proj)
 		if not new_proj.is_node_ready(): await new_proj.ready
-		new_proj.set_data(weapon_data.projectile_speed, spawn_point.global_position, weapon_data.life_distance, parent.weapon.rotation)
+		new_proj.set_data(weapon_data.projectile_speed, spawn_point.global_position, weapon_data.life_distance, parent.weapon.rotation, weapon_data.damage)
 		new_proj.trigger()
 
 

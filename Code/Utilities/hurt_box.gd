@@ -6,9 +6,20 @@ var parent:CharacterBody2D = null:
 		if parent == null: parent = get_parent() as CharacterBody2D
 		return parent
 var can_receive := true
+var collider:CollisionShape2D = null:
+	get:
+		if collider == null: collider = get_child(0) as CollisionShape2D
+		return collider
+
 
 func _ready() -> void:
 	area_entered.connect(_area_entered)
+
+
+func toggle_hurtbox(value := false) -> void:
+	if value: collider.disabled = false
+	else: collider.disabled = true
+		
 
 
 func _area_entered(area:Area2D) -> void:

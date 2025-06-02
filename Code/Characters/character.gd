@@ -21,6 +21,7 @@ var body_x := 0.0
 
 
 func _ready() -> void:
+	body.animation_finished.connect(_body_animation_finished)
 	Signals.ReticlePosition.connect(_flip_weapon)
 	body_x = body.position.x
 	if debug_spawn: setup_character()
@@ -47,15 +48,43 @@ func setup_character(new_data := debug_data) -> void:
 
 
 func receive_damage(damage:Damage) -> void:
-	pass
+	if damage:
+		var value:int = damage.get_value()
+		data.current_hp -= value
+		_invulnerable_cycle()
+		Signals.HpUpdated.emit(data.current_hp, data.max_hp)
+		Signals.SpawnDamageNumber.emit(value, global_position, damage.type)
+		if data.current_hp <= 0:
+			data.current_hp = 0
+			state = DEAD
+			_update_body_animation(state)
+
+
+func _invulnerable_cycle() -> void:
+	var time:float = data.get_var(&"invulnerability_time") / 6
+	var tween:Tween = create_tween()
+	tween.tween_property(body, "modulate", Color.TRANSPARENT, time)
+	tween.tween_property(body, "modulate", Color.WHITE, time)
+	tween.tween_property(body, "modulate", Color.TRANSPARENT, time)
+	tween.tween_property(body, "modulate", Color.WHITE, time)
+	tween.tween_property(body, "modulate", Color.TRANSPARENT, time)
+	tween.tween_property(body, "modulate", Color.WHITE, time)
 
 
 func _update_body_animation(_state := IDLE) -> void:
 	match _state:
 		MOVING:
 			if body.animation != &"move": body.play(&"move")
+		DEAD:
+			if body.animation != &"death": body.play(&"death")
+			if weapon.visible: weapon.hide()
 		_:
 			if body.animation != &"idle": body.play(&"idle")
+
+
+func _body_animation_finished() -> void:
+	if body.animation == &"death":
+		Signals.CharacterDead.emit(self)
 
 
 func _flip_body() -> void:

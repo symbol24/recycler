@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		if global_position.distance_squared_to(start_pos) >= target: _destroy()
 
 
-func set_data(new_speed := base_speed, new_pos := Vector2.ZERO, life_distance := 2.0, new_rot := 0.0) -> void:
+func set_data(new_speed := base_speed, new_pos := Vector2.ZERO, life_distance := 2.0, new_rot := 0.0, new_damage := Damage.new()) -> void:
 	active = false
 	speed = new_speed
 	global_position = new_pos
@@ -25,6 +25,7 @@ func set_data(new_speed := base_speed, new_pos := Vector2.ZERO, life_distance :=
 	target = life_distance * life_distance
 	rotation = new_rot
 	direction = direction.rotated(rotation)
+	damage = new_damage
 
 
 func trigger() -> void:

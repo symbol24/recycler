@@ -17,13 +17,13 @@ texture = ExtResource("1_7x7pb")
 position = Vector2(264, 138)
 texture = ExtResource("1_7x7pb")
 
-[node name="Enemy" parent="." instance=ExtResource("5_tq1so")]
-position = Vector2(213, 62)
-debug_spawn = true
-
 [node name="character" parent="." instance=ExtResource("1_f1n8c")]
 position = Vector2(144, 96)
 debug_data = ExtResource("3_yjxcc")
+debug_spawn = true
+
+[node name="Enemy" parent="." instance=ExtResource("5_tq1so")]
+position = Vector2(181, 45)
 debug_spawn = true
 
 [node name="projectile_layer" type="Node2D" parent="." groups=["projectile_layer"]]

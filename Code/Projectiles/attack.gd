@@ -11,6 +11,7 @@ func _ready() -> void:
 
 
 func get_damage() -> Damage:
+	if attack_owner == null: attack_owner = get_parent()
 	if damage: damage.attack_owner = attack_owner
 	else: 
 		damage = Damage.new()

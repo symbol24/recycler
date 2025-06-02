@@ -1,13 +1,12 @@
-class_name CharacterMove extends CharacterAction
+class_name MoveToPlayer extends EnemyAction
 
 
 var direction:Vector2 = Vector2.ZERO
-var previous:float = 0.0
 
 
 func _process(delta: float) -> void:
 	if is_instance_valid(parent) and parent.data:
-		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		direction = global_position.direction_to(parent.player.global_position)
 		parent.velocity = _move(parent.velocity, direction, delta)
 
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwabm6nlxsd5e"]
+[gd_scene load_steps=3 format=3 uid="uid://cwabm6nlxsd5e"]
 
 [ext_resource type="Script" uid="uid://bdabwfib1h4h6" path="res://Code/UI/player_ui.gd" id="1_xnwvs"]
+[ext_resource type="Script" uid="uid://dh5anyspdfq1s" path="res://Code/UI/damage_numbers.gd" id="2_7jiju"]
 
 [node name="PlayerUi" type="Control"]
 layout_mode = 3
@@ -8,3 +9,19 @@ anchors_preset = 0
 script = ExtResource("1_xnwvs")
 id = &"player_ui"
 metadata/_custom_type_script = "uid://busan7sjbiae8"
+
+[node name="DamageNumbers" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_7jiju")
+
+[node name="hp_bar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="exp_bar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
