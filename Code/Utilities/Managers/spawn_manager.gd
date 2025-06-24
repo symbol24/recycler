@@ -5,14 +5,21 @@ const DEBUGPLAYER := preload("uid://ce7w52outmc3j")
 const DEBUGENEMY := preload("uid://di07qeiu452uf")
 const DEBUGELITE := preload("uid://k7tu2lp68mil")
 const DEBUGBOSS := preload("uid://dreabhugaeeyt")
-const PLAYERSPAWN := Vector2(180, 90)
+const PLAYERSPAWN := Vector2(160, 90)
 const MINSPAWNTIME := 1.0
 const MAXSPAWNTIME := 3.0
+const INNERRADIUS := 140.0
+const OUTERRADIUS := 180.0
 
 
+@export_category("Characters")
+@export var characters:Array[CharacterData] = []
+
+@export_category("Enemies")
 @export var base_enemies:Array[EnemyData] = []
 @export var elite_enemies:Array[EnemyData] = []
 @export var boss_enemies:Array[EnemyData] = []
+
 
 var active_player:Character
 var instantiated_enemies:Dictionary[StringName, PackedScene] = {}
@@ -94,7 +101,7 @@ func _spawn_enemy(type:EnemyData.Type = EnemyData.Type.NORMAL) -> void:
 	if not new.is_node_ready(): await new.ready
 	var data:EnemyData = _get_enemy_data(type)
 	new.setup_character(data)
-	new.global_position = Vector2(randi_range(0, 360), randi_range(0,180))
+	new.global_position = _get_spawn_coords()
 
 
 func _get_enemy(type:EnemyData.Type = EnemyData.Type.NORMAL) -> Enemy:
@@ -122,3 +129,16 @@ func _enemy_dead(_ssspos:Vector2, enemy:Enemy) -> void:
 
 func _toggle_can_spawn_enemies(value := false) -> void:
 	can_spawn_enemies = value
+
+
+func _get_spawn_coords() -> Vector2:
+	var min_sq_radius = INNERRADIUS * INNERRADIUS
+	var max_sq_radius = OUTERRADIUS * OUTERRADIUS
+	var random_sq_radius = randf_range(min_sq_radius, max_sq_radius)
+	var random_radius = sqrt(random_sq_radius)
+
+	var random_angle = randf_range(0, TAU)
+
+	var x = random_radius * cos(random_angle)
+	var y = random_radius * sin(random_angle)
+	return Vector2(x, y) + active_player.global_position

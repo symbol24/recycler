@@ -25,6 +25,7 @@ signal SpawnDamageNumber(value:int, location:Vector2, type:Damage.Type)
 signal RemoveDamageNumber(dmgnbr:Label)
 signal HpUpdated(current_hp:int, max_hp:int)
 signal UpdateTimer(value:int)
+signal ShowStartTimer()
 
 # ENEMIES
 signal EnemyDead(location:Vector2, enemy:Enemy)

@@ -1,12 +1,6 @@
 class_name GameManager extends Node2D
 
 
-@export_category("Characters")
-@export var character:Array[CharacterData] = []
-
-@export_category("Enemies")
-@export var enemies:Array[EnemyData] = []
-
 @onready var run_second_timer: Timer = %run_second_timer
 
 var can_spawn_enemies := false:
@@ -44,7 +38,6 @@ func _start_round_timer() -> void:
 
 
 func _spawn_elite() -> void:
-	print("Spawning Elite!")
 	elite_spawned = true
 	var to_spawn:EnemyData.Type = EnemyData.Type.ELITE if Data.run_data.current_round < Data.run_data.max_round_count else EnemyData.Type.BOSS
 	Signals.SpawnEnemyByType.emit(to_spawn)
