@@ -26,16 +26,22 @@ class_name CharacterData extends Resource
 @export var starting_parts_drop := 0.0
 @export var starting_attachment_points := 2
 
+@export_category("Extras")
+@export var uid := ""
+@export var id := &""
+
 var current_hp:int
 var max_hp:int
 var current_exp := 0
 var total_exp := 0
 var current_level := 1
+var is_alive := false
 
 
 func setup_data() -> void:
 	max_hp = get_var(&"hp")
 	current_hp = max_hp
+	is_alive = true
 
 
 func get_var(variable := &"") -> Variant:

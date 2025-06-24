@@ -51,12 +51,13 @@ func receive_damage(damage:Damage) -> void:
 		if data.current_hp <= 0:
 			data.current_hp = 0
 			state = DEAD
+			data.is_alive = false
 			_update_body_animation(state)
 
 
 func _body_animation_finished() -> void:
 	if body.animation == &"death":
-		queue_free()
+		Signals.EnemyDead.emit(global_position, self)
 
 
 func _update_body_animation(_state := IDLE) -> void:

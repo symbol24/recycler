@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://xv485mpvi7s"]
+
+[ext_resource type="Script" uid="uid://cpm8m80xtopuq" path="res://Code/Autoloads/manager.gd" id="1_68uks"]
+[ext_resource type="Resource" uid="uid://qqugyxnf2de8" path="res://Data/Levels/level_loading _data.tres" id="2_gunr4"]
+
+[node name="Manager" type="Node2D" groups=["manager"]]
+script = ExtResource("1_68uks")
+level_loading_data = ExtResource("2_gunr4")
+metadata/_custom_type_script = "uid://cpm8m80xtopuq"

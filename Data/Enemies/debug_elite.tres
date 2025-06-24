@@ -1,15 +1,15 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://di07qeiu452uf"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://k7tu2lp68mil"]
 
-[ext_resource type="Script" uid="uid://b2kdsh8xeggav" path="res://Code/Enemies/enemy_data.gd" id="1_8yw5x"]
+[ext_resource type="Script" uid="uid://b2kdsh8xeggav" path="res://Code/Enemies/enemy_data.gd" id="1_epj4n"]
 
 [resource]
-script = ExtResource("1_8yw5x")
-enemy_type = 0
+script = ExtResource("1_epj4n")
+enemy_type = 1
 is_juiced = false
 acceleration = 500.0
 friction = 400.0
-starting_speed = 10.0
-starting_hp = 2
+starting_speed = 20.0
+starting_hp = 10
 starting_damage_reduction = 0
 starting_damage_negate = 0.0
 starting_invulnerability_time = 0.2
@@ -21,6 +21,6 @@ starting_xp_gain = 0.0
 starting_currency_drop = 0.0
 starting_parts_drop = 0.0
 starting_attachment_points = 2
-uid = "uid://bis0klhvj6h4t"
-id = &"debug_"
+uid = "uid://5y6j4q33edbx"
+id = &"debug_elite"
 metadata/_custom_type_script = "uid://b2kdsh8xeggav"

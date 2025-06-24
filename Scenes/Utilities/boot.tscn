@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5wpnbdsxqf78"]
+
+[ext_resource type="Script" uid="uid://b0h73pawlp77" path="res://Code/Utilities/boot.gd" id="1_kgsd5"]
+
+[node name="Boot" type="Node2D"]
+script = ExtResource("1_kgsd5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 103.0
+offset_top = 83.0
+offset_right = 143.0
+offset_bottom = 95.0
+text = "boot"

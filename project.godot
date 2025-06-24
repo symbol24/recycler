@@ -11,14 +11,17 @@ config_version=5
 [application]
 
 config/name="recycler"
-run/main_scene="uid://ke7s043n5p4y"
+run/main_scene="uid://c5wpnbdsxqf78"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
 
 Signals="*res://Code/Autoloads/signals.gd"
 UI="*res://Scenes/Autoloads/ui.tscn"
+Mgr="*res://Scenes/Autoloads/manager.tscn"
+Data="*res://Scenes/Autoloads/data_manager.tscn"
 
 [debug]
 
@@ -27,7 +30,7 @@ gdscript/warnings/unused_signal=0
 [display]
 
 window/size/viewport_width=320
-window/size/viewport_height=190
+window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
@@ -46,6 +49,10 @@ folder_colors={
 
 projectile_layer=""
 player=""
+game_manager=""
+manager=""
+enemy_layer=""
+player_layer=""
 
 [gui]
 

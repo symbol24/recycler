@@ -23,7 +23,7 @@ func toggle_hurtbox(value := false) -> void:
 
 
 func _area_entered(area:Area2D) -> void:
-	if area.has_method(&"get_damage") and can_receive:
+	if area.has_method(&"get_damage") and can_receive and parent.data.is_alive:
 		can_receive = false
 		parent.receive_damage(area.get_damage())
 		get_tree().create_timer(parent.data.get_var(&"invulnerability_time")).timeout.connect(_reset_invul)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LoadingData" load_steps=5 format=3 uid="uid://qqugyxnf2de8"]
+
+[ext_resource type="Script" uid="uid://bg1564wtve8au" path="res://Code/Levels/level_data.gd" id="1_n20d5"]
+[ext_resource type="Script" uid="uid://dovlj5kr6y7xy" path="res://Code/Levels/loading_data.gd" id="2_e0vjj"]
+[ext_resource type="Resource" uid="uid://cb2dpddjjjnp1" path="res://Data/Levels/main_menu.tres" id="2_kr6ya"]
+[ext_resource type="Resource" uid="uid://fexqr0dmlahm" path="res://Data/Levels/test_level.tres" id="3_80j4d"]
+
+[resource]
+script = ExtResource("2_e0vjj")
+level_datas = Array[ExtResource("1_n20d5")]([ExtResource("2_kr6ya"), ExtResource("3_80j4d")])
+metadata/_custom_type_script = "uid://dovlj5kr6y7xy"

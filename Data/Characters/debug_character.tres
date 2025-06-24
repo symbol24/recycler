@@ -19,4 +19,5 @@ starting_xp_gain = 0.0
 starting_currency_drop = 0.0
 starting_parts_drop = 0.0
 starting_attachment_points = 2
+uid = "uid://0q2nf4f4fv0f"
 metadata/_custom_type_script = "uid://beh374u0riuvq"

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6itlfnxoswt0"]
+
+[ext_resource type="Script" uid="uid://bkgrd6ft8c7ps" path="res://Code/UI/main_menu.gd" id="1_5wsvm"]
+
+[node name="MainMenu" type="Control"]
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5wsvm")
+id = &"main_menu"
+metadata/_custom_type_script = "uid://busan7sjbiae8"
+
+[node name="btn_play" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 145.0
+offset_top = 80.0
+offset_right = 175.0
+offset_bottom = 100.0
+text = "PLAY"

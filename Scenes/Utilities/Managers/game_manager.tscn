@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://h551enkad4pv"]
+
+[ext_resource type="Script" uid="uid://djy3aiaah7e45" path="res://Code/Utilities/Managers/game_manager.gd" id="1_km78q"]
+
+[node name="GameManager" type="Node2D" groups=["game_manager"]]
+script = ExtResource("1_km78q")
+metadata/_custom_type_script = "uid://djy3aiaah7e45"
+
+[node name="run_second_timer" type="Timer" parent="."]
+unique_name_in_owner = true

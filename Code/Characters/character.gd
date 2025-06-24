@@ -57,6 +57,7 @@ func receive_damage(damage:Damage) -> void:
 		if data.current_hp <= 0:
 			data.current_hp = 0
 			state = DEAD
+			data.is_alive = false
 			_update_body_animation(state)
 
 
