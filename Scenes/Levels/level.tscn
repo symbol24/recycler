@@ -1,18 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://ke7s043n5p4y"]
+[gd_scene load_steps=9 format=4 uid="uid://ke7s043n5p4y"]
 
-[ext_resource type="Texture2D" uid="uid://dkrf2v8jr22vw" path="res://icon.svg" id="1_7x7pb"]
 [ext_resource type="Script" uid="uid://dqkkguenk18vh" path="res://Code/Levels/level.gd" id="1_lkqqh"]
+[ext_resource type="Texture2D" uid="uid://ded3qft65fd7t" path="res://Textures/Debug/fourfour_pixel.png" id="2_7x7pb"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7x7pb"]
+b = Vector2(320, -2.79753e-05)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yjxcc"]
+b = Vector2(180, -7.86805e-06)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lkqqh"]
+b = Vector2(-180, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tq1so"]
+b = Vector2(320, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yjxcc"]
+texture = ExtResource("2_7x7pb")
+texture_region_size = Vector2i(4, 4)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lkqqh"]
+sources/0 = SubResource("TileSetAtlasSource_yjxcc")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_lkqqh")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(51, 60)
-texture = ExtResource("1_7x7pb")
+[node name="limits" type="StaticBody2D" parent="."]
+collision_mask = 2
 
-[node name="Icon2" type="Sprite2D" parent="."]
-position = Vector2(264, 138)
-texture = ExtResource("1_7x7pb")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="limits"]
+position = Vector2(320, 0)
+rotation = 3.14159
+shape = SubResource("SegmentShape2D_7x7pb")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="limits"]
+rotation = 1.5708
+shape = SubResource("SegmentShape2D_yjxcc")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="limits"]
+position = Vector2(320, 0)
+rotation = -1.5708
+shape = SubResource("SegmentShape2D_lkqqh")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="limits"]
+position = Vector2(0, 180)
+shape = SubResource("SegmentShape2D_tq1so")
+one_way_collision = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAADAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAACAAgAAAAAAAAAAAASAAUAAAAAAAAAAAATAAcAAAAAAAAAAAATAAkAAAAAAAAAAAARAAoAAAAAAAAAAAARAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAARAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAYAAAAAAAAAAAARAAIAAAAAAAAAAAATAAQAAAAAAAAAAAARAAQAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_lkqqh")
 
 [node name="player_layer" type="Node2D" parent="." groups=["player_layer"]]
 

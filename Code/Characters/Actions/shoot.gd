@@ -30,7 +30,7 @@ func _shoot() -> void:
 	if current_count < weapon_data.projectile_count:
 		_spawn_bullet()
 		parent.weapon.play(&"shoot")
-		_trigger_flash()
+		#_trigger_flash()
 		current_count += 1
 		if weapon_data.count_delay > 0.0: get_tree().create_timer(weapon_data.count_delay).timeout.connect(_shoot)
 		else: get_tree().create_timer(weapon_data.shoot_delay).timeout.connect(_end_shoot)
