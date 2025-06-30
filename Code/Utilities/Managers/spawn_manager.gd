@@ -5,6 +5,7 @@ const DEBUGPLAYER := preload("uid://ce7w52outmc3j")
 const DEBUGENEMY := preload("uid://di07qeiu452uf")
 const DEBUGELITE := preload("uid://k7tu2lp68mil")
 const DEBUGBOSS := preload("uid://dreabhugaeeyt")
+const PLAYCAMERA := "uid://blwon3x85h06h"
 const PLAYERSPAWN := Vector2(160, 90)
 const MINSPAWNTIME := 1.0
 const MAXSPAWNTIME := 3.0
@@ -22,6 +23,7 @@ const OUTERRADIUS := 180.0
 
 
 var active_player:Character
+var play_camera:Camera2D
 var instantiated_enemies:Dictionary[StringName, PackedScene] = {}
 var enemy_pool:Array[Array] = []
 var enemy_count := 0
@@ -54,7 +56,7 @@ func _process(delta: float) -> void:
 
 
 func _spawn_character(pos := PLAYERSPAWN) -> void:
-	if active_player != null:
+	if is_instance_valid(active_player):
 		var temp = active_player
 		active_player = null
 		temp.queue_free.call_deferred()
@@ -66,6 +68,16 @@ func _spawn_character(pos := PLAYERSPAWN) -> void:
 	if not active_player.is_node_ready(): await active_player.ready
 	active_player.setup_character(character_data)
 	active_player.global_position = pos
+	
+	if is_instance_valid(play_camera):
+		active_player.remove_child(play_camera)
+		var temp = play_camera
+		play_camera = null
+		temp.queue_free.call_deferred()
+	
+	play_camera = load(PLAYCAMERA).instantiate()
+	active_player.add_child(play_camera)
+	play_camera.position = Vector2.ZERO
 	
 	
 func _get_character_data(id := &"") -> CharacterData:

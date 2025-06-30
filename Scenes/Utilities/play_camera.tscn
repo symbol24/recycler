@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://blwon3x85h06h"]
+
+[node name="PlayCamera" type="Camera2D"]
+limit_left = -10
+limit_top = -10
+limit_right = 330
+limit_bottom = 190

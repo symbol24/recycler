@@ -3,6 +3,7 @@ class_name DataManager extends Node
 
 const FOLDER = "user://save/"
 const EXTENSION = "tres"
+const MAPSIZE := Vector2(320, 180)
 
 
 var run_data:RunData
