@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6iaw7ntjlw4a"]
+
+[ext_resource type="Script" uid="uid://cspce3p8xpe2j" path="res://Code/UI/end_round.gd" id="1_icjh0"]
+
+[node name="EndRound" type="Control"]
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_icjh0")
+id = &"end_round"
+metadata/_custom_type_script = "uid://busan7sjbiae8"
+
+[node name="background" type="Panel" parent="."]
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+
+[node name="round_label" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Round #"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="buttons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+theme_override_constants/separation = 10
+
+[node name="btn_return" type="Button" parent="VBoxContainer/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Main Menu"
+
+[node name="btn_continue" type="Button" parent="VBoxContainer/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+
+[node name="spacer" type="Control" parent="VBoxContainer/buttons"]
+layout_mode = 2

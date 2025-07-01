@@ -72,6 +72,7 @@ radius = 4.0
 height = 12.0
 
 [node name="character" type="CharacterBody2D" groups=["player"]]
+process_mode = 1
 top_level = true
 collision_layer = 2
 script = ExtResource("1_lmtek")

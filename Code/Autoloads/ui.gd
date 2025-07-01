@@ -4,6 +4,7 @@ extends CanvasLayer
 const PLAYERUI := "uid://cwabm6nlxsd5e"
 const LOADING := "uid://bl0x8fggjhu8h"
 const MAINMENU := "uid://c6itlfnxoswt0"
+const ENDROUND := "uid://c6iaw7ntjlw4a"
 
 
 var screens:Array[RidControl] = []
@@ -49,6 +50,8 @@ func _get_new_control(_name := &"") -> RidControl:
 	match _name:
 		&"main_menu":
 			new_rid = load(MAINMENU).instantiate()
+		&"end_round":
+			new_rid = load(ENDROUND).instantiate()
 		_:
 			new_rid = load(PLAYERUI).instantiate()
 	screens.append(new_rid)

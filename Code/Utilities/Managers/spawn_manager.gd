@@ -26,7 +26,7 @@ var active_player:Character
 var play_camera:Camera2D
 var instantiated_enemies:Dictionary[StringName, PackedScene] = {}
 var enemy_pool:Array[Array] = []
-var enemy_count := 0
+var spawned_enemies:Array[Enemy] = []
 var spawn_timer := 0.0
 var next_spawn := 0.1
 var can_spawn_enemies := false
@@ -114,6 +114,7 @@ func _spawn_enemy(type:EnemyData.Type = EnemyData.Type.NORMAL) -> void:
 	var data:EnemyData = _get_enemy_data(type)
 	new.setup_character(data)
 	new.global_position = _get_spawn_coords()
+	spawned_enemies.append(new)
 
 
 func _get_enemy(type:EnemyData.Type = EnemyData.Type.NORMAL) -> Enemy:
@@ -126,12 +127,23 @@ func _get_enemy(type:EnemyData.Type = EnemyData.Type.NORMAL) -> Enemy:
 	return result
 
 
-func _enemy_dead(_ssspos:Vector2, enemy:Enemy) -> void:
+func _enemy_dead(_pos:Vector2, enemy:Enemy) -> void:
 	enemy_layer.remove_child(enemy)
 	
 	var found := false
+	var i := 0
+	for each in spawned_enemies:
+		if is_instance_valid(each) and each == enemy:
+			found = true
+			break
+		i += 1
+	if found: 
+		spawned_enemies.remove_at(i)
+		if spawned_enemies.is_empty(): Signals.EndRound.emit()
+	
+	found = false
 	for each in enemy_pool:
-		if not each.is_empty() and is_instance_valid(each[0]) and each[0].data.id == enemy.data.id:
+		if not found and not each.is_empty() and is_instance_valid(each[0]) and each[0].data.id == enemy.data.id:
 			each.append(enemy)
 			found = true
 	

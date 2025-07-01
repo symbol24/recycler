@@ -10,6 +10,8 @@ signal InitNewRun()
 signal StartRunTimer()
 signal SpawnEnemyByType(type:EnemyData.Type)
 signal ToggleEnemySpawning(value:bool)
+signal EndRound()
+signal StartNextRound()
 
 # Character
 signal CharacterReady(character:Character)
