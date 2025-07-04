@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvuh6805w0eff"]
+[gd_scene load_steps=3 format=3 uid="uid://cvuh6805w0eff"]
 
 [ext_resource type="Script" uid="uid://cx0h1waxqqsfr" path="res://Code/Autoloads/ui.gd" id="1_dxm07"]
+[ext_resource type="PackedScene" uid="uid://ba3i5ypmhm043" path="res://Scenes/UI/popup_manager.tscn" id="2_ly5ca"]
 
 [node name="Ui" type="CanvasLayer"]
 script = ExtResource("1_dxm07")
+
+[node name="PopupManager" parent="." instance=ExtResource("2_ly5ca")]
+unique_name_in_owner = true

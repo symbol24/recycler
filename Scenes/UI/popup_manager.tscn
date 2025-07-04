@@ -1,0 +1,97 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba3i5ypmhm043"]
+
+[ext_resource type="Script" uid="uid://bkrhvo2m2bmyr" path="res://Code/UI/popup_manager.gd" id="1_0fync"]
+
+[node name="PopupManager" type="Control"]
+process_mode = 3
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_0fync")
+
+[node name="popup_timer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+
+[node name="large_popup" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 30.0
+offset_right = 240.0
+offset_bottom = 120.0
+theme_type_variation = &"LargePopupPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="large_popup"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="large_title" type="Label" parent="large_popup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"LargePopupTitle"
+text = "Popup Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="large_text" type="Label" parent="large_popup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LargePopupText"
+text = "Popup Text"
+
+[node name="bottom" type="HBoxContainer" parent="large_popup/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="timer" type="Label" parent="large_popup/VBoxContainer/bottom"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LargePopupTimer"
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buttons" type="HBoxContainer" parent="large_popup/VBoxContainer/bottom"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 4
+
+[node name="btn_popup_cancel" type="Button" parent="large_popup/VBoxContainer/bottom/buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_vertical = 8
+theme_type_variation = &"LargePopupButton"
+text = "Cancel"
+
+[node name="btn_popup_confirm" type="Button" parent="large_popup/VBoxContainer/bottom/buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_vertical = 8
+theme_type_variation = &"LargePopupButton"
+text = "Confirm"
+
+[node name="small_popup" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 30.0
+offset_right = 240.0
+offset_bottom = 70.0
+
+[node name="small_popup_text" type="Label" parent="small_popup"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Small Popup text"
+horizontal_alignment = 1
+vertical_alignment = 1

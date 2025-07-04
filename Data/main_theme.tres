@@ -1,4 +1,21 @@
-[gd_resource type="Theme" format=3 uid="uid://cfqtt6fu80lqe"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cfqtt6fu80lqe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2lqi"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.162066, 0.162066, 0.162065, 1)
 
 [resource]
 default_font_size = 8
+Button/font_sizes/font_size = 6
+LargePopupButton/base_type = &"Button"
+LargePopupPanel/base_type = &"Panel"
+LargePopupPanel/styles/panel = SubResource("StyleBoxFlat_i2lqi")
+LargePopupText/base_type = &"Label"
+LargePopupText/font_sizes/font_size = 6
+LargePopupTimer/base_type = &"Label"
+LargePopupTimer/font_sizes/font_size = 10
+LargePopupTitle/base_type = &"Label"
+LargePopupTitle/font_sizes/font_size = 8

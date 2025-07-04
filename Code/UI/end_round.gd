@@ -14,6 +14,10 @@ func _ready() -> void:
 func toggle_display(value := false) -> void:
 	if value:
 		round_label.text = "Round %s Complete" % Data.run_data.current_round
+		if Data.run_data.current_round >= Data.run_data.max_round_count:
+			btn_continue.hide()
+		else:
+			btn_continue.show()
 		show()
 	else:
 		hide()

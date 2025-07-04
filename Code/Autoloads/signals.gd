@@ -28,6 +28,8 @@ signal RemoveDamageNumber(dmgnbr:Label)
 signal HpUpdated(current_hp:int, max_hp:int)
 signal UpdateTimer(value:int)
 signal ShowStartTimer()
+signal DisplayPopup(id:StringName, is_large:bool, title:String, text:String, timer:int)
+signal ReturnPopupResult(popup_id:StringName, result:bool)
 
 # ENEMIES
 signal EnemyDead(location:Vector2, enemy:Enemy)

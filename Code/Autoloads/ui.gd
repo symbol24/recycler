@@ -7,6 +7,8 @@ const MAINMENU := "uid://c6itlfnxoswt0"
 const ENDROUND := "uid://c6iaw7ntjlw4a"
 
 
+@onready var popup_manager: PopupManager = %PopupManager
+
 var screens:Array[RidControl] = []
 var loading:LoadingScreen
 var previous := &""
