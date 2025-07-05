@@ -24,7 +24,7 @@ const OUTERRADIUS := 180.0
 
 var active_player:Character
 var play_camera:Camera2D
-var instantiated_enemies:Dictionary[StringName, PackedScene] = {}
+var instantiated_enemies:Dictionary = {}
 var enemy_pool:Array[Array] = []
 var spawned_enemies:Array[Enemy] = []
 var spawn_timer := 0.0

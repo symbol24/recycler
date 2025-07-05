@@ -31,6 +31,7 @@ func _start_next_round() -> void:
 	if Data.run_data.current_round < Data.run_data.max_round_count:
 		Data.run_data.current_round += 1
 		Data.run_data.round_timer = 0.0
+		elite_spawned = false
 		get_tree().paused = false
 		Signals.ShowStartTimer.emit()
 

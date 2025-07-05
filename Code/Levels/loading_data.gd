@@ -3,7 +3,7 @@ class_name LoadingData extends Resource
 
 @export var level_datas:Array[LevelData] = []
 
-var levels:Dictionary[StringName, LevelData] = {}
+var levels:Dictionary = {}
 
 
 func create_dict() -> void:
