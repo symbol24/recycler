@@ -36,18 +36,52 @@ var current_exp := 0
 var total_exp := 0
 var current_level := 1
 var is_alive := false
+var mech_parts:Array[MechPartData] = []
 
 
 func setup_data() -> void:
 	max_hp = get_var(&"hp")
 	current_hp = max_hp
+	if not mech_parts.is_empty(): mech_parts.clear()
 	is_alive = true
 
 
+func add_mech_part_data(part:MechPartData = null) -> void:
+	if part != null:
+		mech_parts.append(part.duplicate(true))
+
+
+func upgrade_mech_part(part:MechPartData = null) -> void:
+	var to_upgrade:MechPartData = null
+	if part != null:
+		for each in mech_parts:
+			if part.id == each.id:
+				to_upgrade = each
+				break
+		
+		if to_upgrade != null:
+			to_upgrade.level += 1
+
+
+func remove_mech_part_data(part:MechPartData = null) -> void:
+	var i := 0
+	var found := false
+	if part != null:
+		for each in mech_parts:
+			if each.id == part.id:
+				found = true
+				break
+			i += 1
+
+		if found:
+			mech_parts.remove_at(i)
+
+
 func get_var(variable := &"") -> Variant:
+	var result
 	if get(&"starting_" + variable) != null:
-		#if variable != &"speed": print("Variable %s: %s" % [variable, get(&"starting_" + variable)])
-		return get(&"starting_" + variable)
-	
-	#print(variable, " not found")
-	return 0
+		result = get(&"starting_" + variable)
+		for each in mech_parts:
+			result += each.get_stat(variable)
+
+	return result

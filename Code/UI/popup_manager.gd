@@ -48,6 +48,8 @@ func _display_popup(id:StringName, is_large := false, title := "", text := "", t
 		small_popup.show()
 		popup_timer.start()
 
+	show()
+
 
 func _confirm_pressed() -> void:
 	result = true
@@ -57,6 +59,9 @@ func _confirm_pressed() -> void:
 func _close_popup() -> void:
 	large_popup.hide()
 	small_popup.hide()
+	if not popup_timer.is_stopped(): 
+		popup_timer.stop()
+		popup_timer.wait_time = 1.0
 	hide()
 	Signals.ReturnPopupResult.emit(current_popup, result)
 
@@ -64,6 +69,7 @@ func _close_popup() -> void:
 func _timer_timeout() -> void:
 	if max_time > 0:
 		max_time -= 1
+		timer_label.text = str(max_time)
 		popup_timer.start()
 	else:
 		_close_popup()

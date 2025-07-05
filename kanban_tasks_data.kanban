@@ -1,0 +1,94 @@
+{
+	"categories": [
+		{
+			"uuid": "f9cdd44b-aa56-4003-b49b-badb7c1848b4",
+			"title": "Task",
+			"color": "70fa8f"
+		},
+		{
+			"uuid": "2245ad65-3c3a-4bbf-aefe-1dc6c7c0f9b8",
+			"title": "Backlog",
+			"color": "1f82b3"
+		},
+		{
+			"uuid": "565236d5-d80c-4fc0-8df8-ea970ab38791",
+			"title": "Bug",
+			"color": "d71969"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "78b47bc5-d0cf-4e2e-bee2-733b7185bea6",
+			"title": "Todo",
+			"tasks": [
+				"7bd5c080-4ae2-4521-8a06-26b28e43ead3",
+				"34f6644d-5abf-4659-8e45-9efb1de1fd27"
+			]
+		},
+		{
+			"uuid": "e5d5a78d-8d99-4760-898b-56ce89017a34",
+			"title": "Doing",
+			"tasks": [
+				"d0de8702-e51c-4a3d-9ef7-5a01f9c65418",
+				"2a9aeadf-c249-4883-9f22-bd2f3543a0f4"
+			]
+		},
+		{
+			"uuid": "ca24731a-58f5-478d-926f-86a44f2b840f",
+			"title": "Done",
+			"tasks": [
+				"995fddf4-2f03-4e6c-aacc-7336dfe7bcfa"
+			]
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "995fddf4-2f03-4e6c-aacc-7336dfe7bcfa",
+			"title": "Make end of final round go back to main menu",
+			"description": "",
+			"category": "f9cdd44b-aa56-4003-b49b-badb7c1848b4",
+			"steps": []
+		},
+		{
+			"uuid": "d0de8702-e51c-4a3d-9ef7-5a01f9c65418",
+			"title": "Add mech part pickups",
+			"description": "- Need pickup area on character\n- Need pickup area on item\n- Display picked up item\n- Add items to inventory to use them between rounds",
+			"category": "f9cdd44b-aa56-4003-b49b-badb7c1848b4",
+			"steps": []
+		},
+		{
+			"uuid": "34f6644d-5abf-4659-8e45-9efb1de1fd27",
+			"title": "End of Round item management",
+			"description": "- list items in a grid\n- allow combining of items to upgrade equiped items\n- remaining items are scrapped into exp",
+			"category": "f9cdd44b-aa56-4003-b49b-badb7c1848b4",
+			"steps": []
+		},
+		{
+			"uuid": "2a9aeadf-c249-4883-9f22-bd2f3543a0f4",
+			"title": "Add mech parts dropped by enemies",
+			"description": "- Enemies need a loot table for possible drops\n- Drop rates",
+			"category": "f9cdd44b-aa56-4003-b49b-badb7c1848b4",
+			"steps": []
+		},
+		{
+			"uuid": "7bd5c080-4ae2-4521-8a06-26b28e43ead3",
+			"title": "Create Loot Table system",
+			"description": "",
+			"category": "f9cdd44b-aa56-4003-b49b-badb7c1848b4",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"78b47bc5-d0cf-4e2e-bee2-733b7185bea6"
+			],
+			[
+				"e5d5a78d-8d99-4760-898b-56ce89017a34"
+			],
+			[
+				"ca24731a-58f5-478d-926f-86a44f2b840f"
+			]
+		]
+	}
+}

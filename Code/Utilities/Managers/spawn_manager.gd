@@ -5,6 +5,7 @@ const DEBUGPLAYER := preload("uid://ce7w52outmc3j")
 const DEBUGENEMY := preload("uid://di07qeiu452uf")
 const DEBUGELITE := preload("uid://k7tu2lp68mil")
 const DEBUGBOSS := preload("uid://dreabhugaeeyt")
+const DEBUGMECHPART := preload("uid://bs8qq20nf2y6p")
 const PLAYCAMERA := "uid://blwon3x85h06h"
 const PLAYERSPAWN := Vector2(160, 90)
 const MINSPAWNTIME := 1.0
@@ -20,7 +21,6 @@ const OUTERRADIUS := 180.0
 @export var base_enemies:Array[EnemyData] = []
 @export var elite_enemies:Array[EnemyData] = []
 @export var boss_enemies:Array[EnemyData] = []
-
 
 var active_player:Character
 var play_camera:Camera2D
