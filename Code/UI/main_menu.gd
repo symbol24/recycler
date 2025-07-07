@@ -5,7 +5,7 @@ class_name MainMenu extends RidControl
 
 
 func _ready() -> void:
-	Signals.StartManager.emit(&"game_manager")
+	Signals.start_manager.emit(&"game_manager")
 	btn_play.pressed.connect(_btn_play)
 
 

@@ -12,6 +12,7 @@ const MINSPAWNTIME := 1.0
 const MAXSPAWNTIME := 3.0
 const INNERRADIUS := 140.0
 const OUTERRADIUS := 180.0
+const PARTVERTOFFSET := 20.0
 
 
 @export_category("Characters")
@@ -22,23 +23,23 @@ const OUTERRADIUS := 180.0
 @export var elite_enemies:Array[EnemyData] = []
 @export var boss_enemies:Array[EnemyData] = []
 
-var active_player:Character
-var play_camera:Camera2D
-var instantiated_enemies:Dictionary = {}
-var enemy_pool:Array[Array] = []
-var spawned_enemies:Array[Enemy] = []
-var spawn_timer := 0.0
-var next_spawn := 0.1
-var can_spawn_enemies := false
+var _active_player:Character
+var _play_camera:Camera2D
+var _enemy_pool:Array[Array] = []
+var _spawned_enemies:Array[Enemy] = []
+var _spawn_timer := 0.0
+var _next_spawn := 0.1
+var _can_spawn_enemies := false
+var _pool_mech_parts:Array[MechPartDrop] = []
 
-var enemy_layer:Node2D = null:
+var _enemy_layer:Node2D = null:
 	get:
-		if not is_instance_valid(enemy_layer): enemy_layer = get_tree().get_first_node_in_group(&"enemy_layer")
-		return enemy_layer
-var player_layer:Node2D = null:
+		if not is_instance_valid(_enemy_layer): _enemy_layer = get_tree().get_first_node_in_group(&"_enemy_layer")
+		return _enemy_layer
+var _player_layer:Node2D = null:
 	get:
-		if not is_instance_valid(player_layer): player_layer = get_tree().get_first_node_in_group(&"player_layer")
-		return player_layer
+		if not is_instance_valid(_player_layer): _player_layer = get_tree().get_first_node_in_group(&"_player_layer")
+		return _player_layer
 
 
 func _ready() -> void:
@@ -50,42 +51,42 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if can_spawn_enemies:
-		spawn_timer += delta
-		if spawn_timer >= next_spawn: _spawn_normal()
+	if _can_spawn_enemies:
+		_spawn_timer += delta
+		if _spawn_timer >= _next_spawn: _spawn_normal()
 
 
 func _spawn_character(pos := PLAYERSPAWN) -> void:
-	if is_instance_valid(active_player):
-		var temp = active_player
-		active_player = null
+	if is_instance_valid(_active_player):
+		var temp = _active_player
+		_active_player = null
 		temp.queue_free.call_deferred()
-	
+
 	var selected:StringName = &"" if Data.run_data == null or Data.run_data.selected_character == &"" else Data.run_data.selected_character
 	var character_data:CharacterData = _get_character_data(selected).duplicate(true)
-	active_player = load(character_data.uid).instantiate()
-	player_layer.add_child(active_player)
-	if not active_player.is_node_ready(): await active_player.ready
-	active_player.setup_character(character_data)
-	active_player.global_position = pos
-	
-	if is_instance_valid(play_camera):
-		active_player.remove_child(play_camera)
-		var temp = play_camera
-		play_camera = null
+	_active_player = load(character_data.uid).instantiate()
+	_player_layer.add_child(_active_player)
+	if not _active_player.is_node_ready(): await _active_player.ready
+	_active_player.setup_character(character_data)
+	_active_player.global_position = pos
+
+	if is_instance_valid(_play_camera):
+		_active_player.remove_child(_play_camera)
+		var temp = _play_camera
+		_play_camera = null
 		temp.queue_free.call_deferred()
-	
-	play_camera = load(PLAYCAMERA).instantiate()
-	active_player.add_child(play_camera)
-	play_camera.position = Vector2.ZERO
-	
-	
+
+	_play_camera = load(PLAYCAMERA).instantiate()
+	_active_player.add_child(_play_camera)
+	_play_camera.position = Vector2.ZERO
+
+
 func _get_character_data(id := &"") -> CharacterData:
 	var result:CharacterData = null
 	if id == &"": result = DEBUGPLAYER
 	else:
 		pass
-	
+
 	return result
 
 
@@ -103,56 +104,56 @@ func _get_enemy_data(type := EnemyData.Type.NORMAL) -> EnemyData:
 
 func _spawn_normal() -> void:
 	_spawn_enemy()
-	next_spawn = randf_range(MINSPAWNTIME, MAXSPAWNTIME)
-	spawn_timer = 0.0
+	_next_spawn = randf_range(MINSPAWNTIME, MAXSPAWNTIME)
+	_spawn_timer = 0.0
 
 
 func _spawn_enemy(type:EnemyData.Type = EnemyData.Type.NORMAL) -> void:
 	var new:Enemy = _get_enemy(type)
-	enemy_layer.add_child(new)
+	_enemy_layer.add_child(new)
 	if not new.is_node_ready(): await new.ready
 	var data:EnemyData = _get_enemy_data(type)
 	new.setup_character(data)
 	new.global_position = _get_spawn_coords()
-	spawned_enemies.append(new)
+	_spawned_enemies.append(new)
 
 
 func _get_enemy(type:EnemyData.Type = EnemyData.Type.NORMAL) -> Enemy:
-	for each in enemy_pool:
+	for each in _enemy_pool:
 		if not each.is_empty() and is_instance_valid(each[0]) and each[0].data.enemy_type == type:
 			return each.pop_front()
-	
+
 	var data:EnemyData = _get_enemy_data(type)
 	var result:Enemy = load(data.uid).instantiate()
 	return result
 
 
 func _enemy_dead(_pos:Vector2, enemy:Enemy) -> void:
-	enemy_layer.remove_child(enemy)
-	
+	_enemy_layer.remove_child(enemy)
+
 	var found := false
 	var i := 0
-	for each in spawned_enemies:
+	for each in _spawned_enemies:
 		if is_instance_valid(each) and each == enemy:
 			found = true
 			break
 		i += 1
-	if found: 
-		spawned_enemies.remove_at(i)
-		if spawned_enemies.is_empty(): Signals.EndRound.emit()
-	
+	if found:
+		_spawned_enemies.remove_at(i)
+		if _spawned_enemies.is_empty(): Signals.EndRound.emit()
+
 	found = false
-	for each in enemy_pool:
+	for each in _enemy_pool:
 		if not found and not each.is_empty() and is_instance_valid(each[0]) and each[0].data.id == enemy.data.id:
 			each.append(enemy)
 			found = true
-	
+
 	if not found:
-		enemy_pool.append([enemy])
-	
+		_enemy_pool.append([enemy])
+
 
 func _toggle_can_spawn_enemies(value := false) -> void:
-	can_spawn_enemies = value
+	_can_spawn_enemies = value
 
 
 func _get_spawn_coords() -> Vector2:
@@ -165,4 +166,19 @@ func _get_spawn_coords() -> Vector2:
 
 	var x = random_radius * cos(random_angle)
 	var y = random_radius * sin(random_angle)
-	return Vector2(x, y) + active_player.global_position
+	return Vector2(x, y) + _active_player.global_position
+
+
+func _spawn_mech_part(_mech_part_data:MechPartData, _pos:Vector2) -> void:
+	if _mech_part_data != null:
+		var part := _get_mech_part_object()
+		_player_layer.add_child(part)
+		if not part.is_node_ready(): await part.ready
+		part.setup_mech_part_drop(_mech_part_data, _pos, Vector2(_pos.x, _pos.y - PARTVERTOFFSET))
+		part.play_drop()
+
+
+func _get_mech_part_object() -> MechPartDrop:
+	if not _pool_mech_parts.is_empty(): return _pool_mech_parts.pop_front()
+
+	return DEBUGMECHPART.instantiate()

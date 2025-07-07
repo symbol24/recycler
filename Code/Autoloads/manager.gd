@@ -20,7 +20,7 @@ var progress := []
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	Signals.StartManager.connect(_start_manager)
+	Signals.start_manager.connect(_start_manager)
 	Signals.KillManager.connect(_kill_manager)
 	Signals.LoadLevel.connect(_load_level)
 	level_loading_data.create_dict()

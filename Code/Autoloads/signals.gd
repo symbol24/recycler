@@ -2,7 +2,7 @@ extends Node2D
 
 
 #Managers
-signal StartManager(id:StringName)
+signal start_manager(id:StringName)
 signal KillManager(id:StringName)
 signal LoadLevel(id:StringName, loading_screen:bool)
 signal SpawnCharacter(pos:Vector2)
