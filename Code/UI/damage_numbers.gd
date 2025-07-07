@@ -13,8 +13,8 @@ var pool:Array[DamageNumber] = []
 
 
 func _ready() -> void:
-	Signals.RemoveDamageNumber.connect(_return_to_pool)
-	Signals.SpawnDamageNumber.connect(_spawn_dmg_nbr)
+	Signals.remove_damage_number.connect(_return_to_pool)
+	Signals.spawn_damage_number.connect(_spawn_dmg_nbr)
 
 
 func _spawn_dmg_nbr(value:int, location:Vector2, type:Damage.Type) -> void:

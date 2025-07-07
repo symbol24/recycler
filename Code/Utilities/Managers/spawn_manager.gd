@@ -12,7 +12,7 @@ const MINSPAWNTIME := 1.0
 const MAXSPAWNTIME := 3.0
 const INNERRADIUS := 140.0
 const OUTERRADIUS := 180.0
-const PARTVERTOFFSET := 20.0
+const PARTVERTOFFSET := 5.0
 
 
 @export_category("Characters")
@@ -34,20 +34,21 @@ var _pool_mech_parts:Array[MechPartDrop] = []
 
 var _enemy_layer:Node2D = null:
 	get:
-		if not is_instance_valid(_enemy_layer): _enemy_layer = get_tree().get_first_node_in_group(&"_enemy_layer")
+		if not is_instance_valid(_enemy_layer): _enemy_layer = get_tree().get_first_node_in_group(&"enemy_layer")
 		return _enemy_layer
 var _player_layer:Node2D = null:
 	get:
-		if not is_instance_valid(_player_layer): _player_layer = get_tree().get_first_node_in_group(&"_player_layer")
+		if not is_instance_valid(_player_layer): _player_layer = get_tree().get_first_node_in_group(&"player_layer")
 		return _player_layer
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
-	Signals.SpawnCharacter.connect(_spawn_character)
-	Signals.EnemyDead.connect(_enemy_dead)
-	Signals.ToggleEnemySpawning.connect(_toggle_can_spawn_enemies)
-	Signals.SpawnEnemyByType.connect(_spawn_enemy)
+	Signals.spawn_character.connect(_spawn_character)
+	Signals.enemy_dead.connect(_enemy_dead)
+	Signals.toggle_enemy_spawning.connect(_toggle_can_spawn_enemies)
+	Signals.spawn_enemy_by_type.connect(_spawn_enemy)
+	Signals.spawn_mech_part.connect(_spawn_mech_part)
 
 
 func _process(delta: float) -> void:
@@ -140,7 +141,7 @@ func _enemy_dead(_pos:Vector2, enemy:Enemy) -> void:
 		i += 1
 	if found:
 		_spawned_enemies.remove_at(i)
-		if _spawned_enemies.is_empty(): Signals.EndRound.emit()
+		if _spawned_enemies.is_empty(): Signals.end_round.emit()
 
 	found = false
 	for each in _enemy_pool:
@@ -172,10 +173,12 @@ func _get_spawn_coords() -> Vector2:
 func _spawn_mech_part(_mech_part_data:MechPartData, _pos:Vector2) -> void:
 	if _mech_part_data != null:
 		var part := _get_mech_part_object()
-		_player_layer.add_child(part)
+		_player_layer.add_child.call_deferred(part)
 		if not part.is_node_ready(): await part.ready
 		part.setup_mech_part_drop(_mech_part_data, _pos, Vector2(_pos.x, _pos.y - PARTVERTOFFSET))
 		part.play_drop()
+	else:
+		print("No loot!")
 
 
 func _get_mech_part_object() -> MechPartDrop:

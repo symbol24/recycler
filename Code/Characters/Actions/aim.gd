@@ -7,7 +7,7 @@ var reticle:Sprite2D = null
 func _ready() -> void:
 	super()
 	await get_tree().create_timer(0.5).timeout
-	Signals.SpawnReticle.emit()
+	Signals.spawn_reticle.emit()
 	
 
 func _process(_delta: float) -> void:

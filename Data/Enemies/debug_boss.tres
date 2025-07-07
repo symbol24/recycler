@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://dreabhugaeeyt"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://dreabhugaeeyt"]
 
 [ext_resource type="Script" uid="uid://b2kdsh8xeggav" path="res://Code/Enemies/enemy_data.gd" id="1_07jak"]
+[ext_resource type="Resource" uid="uid://c0in3vt8qkval" path="res://Data/LootTables/debug_mech_part_table.tres" id="1_fddv0"]
 
 [resource]
 script = ExtResource("1_07jak")
 enemy_type = 2
 is_juiced = false
+mech_part_loot_table = ExtResource("1_fddv0")
+chance_of_mech_part_drop = 1.0
 acceleration = 500.0
 friction = 400.0
 starting_speed = 6.0

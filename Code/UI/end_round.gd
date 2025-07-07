@@ -10,7 +10,7 @@ func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 	btn_continue.pressed.connect(_continue_pressed)
 	btn_return.pressed.connect(_main_menu_pressed)
-	Signals.ReturnPopupResult.connect(_popup_result)
+	Signals.return_pupup_result.connect(_popup_result)
 
 
 func toggle_display(value := false) -> void:
@@ -28,17 +28,17 @@ func toggle_display(value := false) -> void:
 
 func _main_menu_pressed() -> void:
 	if Data.run_data.current_round >= Data.run_data.max_round_count:
-		Signals.LoadLevel.emit(&"main_menu", true)
+		Signals.load_level.emit(&"main_menu", true)
 	else:
-		Signals.DisplayPopup.emit(&"end_round_main_menu", true, "Return to Main Menu?", "Unsaved progression will be lost.", true)
+		Signals.display_popup.emit(&"end_round_main_menu", true, "Return to Main Menu?", "Unsaved progression will be lost.", true)
 
 
 func _popup_result(popup_id:StringName, result := false) -> void:
 	if popup_id == &"end_round_main_menu" and result:
-		Signals.LoadLevel.emit(&"main_menu", true)
+		Signals.load_level.emit(&"main_menu", true)
 
 
 func _continue_pressed() -> void:
-	Signals.ToggleDisplay.emit(&"player_ui", &"end_round", true)
-	Signals.UpdateTimer.emit()
-	Signals.StartNextRound.emit()
+	Signals.toggle_display.emit(&"player_ui", &"end_round", true)
+	Signals.update_timer.emit()
+	Signals.start_next_round.emit()

@@ -56,8 +56,8 @@ modulate = Color(0.165656, 0.165656, 0.165656, 1)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAADAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAACAAgAAAAAAAAAAAASAAUAAAAAAAAAAAATAAcAAAAAAAAAAAATAAkAAAAAAAAAAAARAAoAAAAAAAAAAAARAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAARAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAYAAAAAAAAAAAARAAIAAAAAAAAAAAATAAQAAAAAAAAAAAARAAQAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lkqqh")
 
-[node name="player_layer" type="Node2D" parent="." groups=["player_layer"]]
-
 [node name="enemy_layer" type="Node2D" parent="." groups=["enemy_layer"]]
+
+[node name="player_layer" type="Node2D" parent="." groups=["player_layer"]]
 
 [node name="projectile_layer" type="Node2D" parent="." groups=["projectile_layer"]]

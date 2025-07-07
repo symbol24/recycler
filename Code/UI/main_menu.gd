@@ -10,5 +10,5 @@ func _ready() -> void:
 
 
 func _btn_play() -> void:
-	Signals.InitNewRun.emit()
-	Signals.LoadLevel.emit(&"test_level")
+	Signals.init_new_run.emit()
+	Signals.load_level.emit(&"test_level")

@@ -22,13 +22,13 @@ var body_x := 0.0
 
 func _ready() -> void:
 	body.animation_finished.connect(_body_animation_finished)
-	Signals.ReticlePosition.connect(_flip_weapon)
+	Signals.reticle_position.connect(_flip_weapon)
 	body_x = body.position.x
 	if debug_spawn: setup_character()
 	weapon_flash.hide()
 	var children = get_children()
 	if not children[-1].is_node_ready(): await children[-1].ready
-	Signals.CharacterReady.emit(self)
+	Signals.character_ready.emit(self)
 
 
 func _process(_delta: float) -> void:
@@ -52,8 +52,8 @@ func receive_damage(damage:Damage) -> void:
 		var value:int = damage.get_value()
 		data.current_hp -= value
 		_invulnerable_cycle()
-		Signals.HpUpdated.emit(data.current_hp, data.max_hp)
-		Signals.SpawnDamageNumber.emit(value, global_position, damage.type)
+		Signals.hp_updated.emit(data.current_hp, data.max_hp)
+		Signals.spawn_damage_number.emit(value, global_position, damage.type)
 		if data.current_hp <= 0:
 			data.current_hp = 0
 			state = DEAD
@@ -85,7 +85,7 @@ func _update_body_animation(_state := IDLE) -> void:
 
 func _body_animation_finished() -> void:
 	if body.animation == &"death":
-		Signals.CharacterDead.emit(self)
+		Signals.character_dead.emit(self)
 
 
 func _flip_body() -> void:

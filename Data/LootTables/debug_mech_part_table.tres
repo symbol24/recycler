@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=5 format=3 uid="uid://c0in3vt8qkval"]
+
+[ext_resource type="Script" uid="uid://djbhafskdjlsu" path="res://Code/Utilities/loot_table.gd" id="1_oxnub"]
+[ext_resource type="Resource" uid="uid://cx7a5r1nnonl6" path="res://Data/MechPartData/debug_mech_part_01.tres" id="1_u87u7"]
+[ext_resource type="Resource" uid="uid://blj022ieeip0n" path="res://Data/MechPartData/debug_mech_part_02.tres" id="2_twsck"]
+[ext_resource type="Resource" uid="uid://dp6lholrxryu1" path="res://Data/MechPartData/debug_mech_part_03.tres" id="3_5urld"]
+
+[resource]
+script = ExtResource("1_oxnub")
+id = &"debug_mech_part_table"
+loot_table = Array[Dictionary]([{
+&"item": ExtResource("1_u87u7"),
+&"weight": 15
+}, {
+&"item": ExtResource("2_twsck"),
+&"weight": 15
+}, {
+&"item": ExtResource("3_5urld"),
+&"weight": 20
+}])
+metadata/_custom_type_script = "uid://djbhafskdjlsu"

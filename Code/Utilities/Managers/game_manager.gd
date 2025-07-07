@@ -6,17 +6,17 @@ class_name GameManager extends Node2D
 var can_spawn_enemies := false:
 	set(value):
 		can_spawn_enemies = value
-		Signals.ToggleEnemySpawning.emit(can_spawn_enemies)
+		Signals.toggle_enemy_spawning.emit(can_spawn_enemies)
 var elite_spawned := false
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	Signals.InitNewRun.connect(_init_new_run)
-	Signals.StartRunTimer.connect(_start_round_timer)
-	Signals.EnemyDead.connect(_enemy_defeated)
-	Signals.EndRound.connect(_end_round)
-	Signals.StartNextRound.connect(_start_next_round)
+	Signals.init_new_run.connect(_init_new_run)
+	Signals.start_new_run.connect(_start_round_timer)
+	Signals.enemy_dead.connect(_enemy_defeated)
+	Signals.end_round.connect(_end_round)
+	Signals.start_next_round.connect(_start_next_round)
 	run_second_timer.timeout.connect(_run_second_timer_timeout)
 
 
@@ -33,12 +33,12 @@ func _start_next_round() -> void:
 		Data.run_data.round_timer = 0.0
 		elite_spawned = false
 		get_tree().paused = false
-		Signals.ShowStartTimer.emit()
+		Signals.show_start_timer.emit()
 
 
 func _run_second_timer_timeout() -> void:
 	Data.run_data.round_timer += 1
-	Signals.UpdateTimer.emit(Data.run_data.round_timer)
+	Signals.update_timer.emit(Data.run_data.round_timer)
 	run_second_timer.start()
 	if Data.run_data.round_timer >= Data.run_data.max_round_time and not elite_spawned: _spawn_elite()
 
@@ -51,7 +51,7 @@ func _start_round_timer() -> void:
 func _spawn_elite() -> void:
 	elite_spawned = true
 	var to_spawn:EnemyData.Type = EnemyData.Type.ELITE if Data.run_data.current_round < Data.run_data.max_round_count else EnemyData.Type.BOSS
-	Signals.SpawnEnemyByType.emit(to_spawn)
+	Signals.spawn_enemy_by_type.emit(to_spawn)
 
 
 func _enemy_defeated(_pos:Vector2, enemy:Enemy) -> void:
@@ -62,4 +62,4 @@ func _enemy_defeated(_pos:Vector2, enemy:Enemy) -> void:
 func _end_round() -> void:
 	run_second_timer.stop()
 	get_tree().paused = true
-	Signals.ToggleDisplay.emit(&"end_round", &"player_ui", true)
+	Signals.toggle_display.emit(&"end_round", &"player_ui", true)

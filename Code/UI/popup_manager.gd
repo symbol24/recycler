@@ -21,7 +21,7 @@ var result := false
 
 
 func _ready() -> void:
-	Signals.DisplayPopup.connect(_display_popup)
+	Signals.display_popup.connect(_display_popup)
 	popup_timer.timeout.connect(_timer_timeout)
 	btn_popup_cancel.pressed.connect(_close_popup)
 	btn_popup_confirm.pressed.connect(_confirm_pressed)
@@ -63,7 +63,7 @@ func _close_popup() -> void:
 		popup_timer.stop()
 		popup_timer.wait_time = 1.0
 	hide()
-	Signals.ReturnPopupResult.emit(current_popup, result)
+	Signals.return_pupup_result.emit(current_popup, result)
 
 
 func _timer_timeout() -> void:

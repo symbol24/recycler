@@ -4,23 +4,23 @@ class_name PlayerUi extends RidControl
 const RETICLE := "uid://d25vcug412rou"
 
 
+var reticle:Sprite2D = null
+
 @onready var timer: Label = %timer
 @onready var start_timer: Label = %start_timer
 @onready var start_animator: AnimationPlayer = %start_animator
 
-var reticle:Sprite2D = null
-
 
 func _ready() -> void:
-	Signals.UpdateTimer.connect(_update_timer)
-	Signals.SpawnReticle.connect(_spawn_reticle)
-	Signals.ShowStartTimer.connect(_show_start_timer)
+	Signals.update_timer.connect(_update_timer)
+	Signals.spawn_reticle.connect(_spawn_reticle)
+	Signals.show_start_timer.connect(_show_start_timer)
 
 
 func _process(_delta: float) -> void:
-	if UI.mouse_controls and is_instance_valid(reticle): 
+	if UI.mouse_controls and is_instance_valid(reticle):
 		reticle.position = get_local_mouse_position()
-		Signals.ReticlePosition.emit(reticle.global_position)
+		Signals.reticle_position.emit(reticle.global_position)
 
 
 func _spawn_reticle() -> void:
@@ -28,7 +28,7 @@ func _spawn_reticle() -> void:
 	add_child(reticle)
 	if not reticle.is_node_ready(): await reticle.ready
 	reticle.position = get_local_mouse_position()
-	Signals.ReticleReady.emit(reticle)
+	Signals.reticle_ready.emit(reticle)
 
 
 func _update_timer(value := 0) -> void:
@@ -44,7 +44,7 @@ func _show_start_timer() -> void:
 	start_timer.hide()
 	start_timer.text = "GO!"
 	start_timer.show()
-	Signals.StartRunTimer.emit()
+	Signals.start_new_run.emit()
 	start_animator.play(&"start")
 	await start_animator.animation_finished
 	start_timer.hide()

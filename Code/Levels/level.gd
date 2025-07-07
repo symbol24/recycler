@@ -2,16 +2,16 @@ class_name Level extends Node2D
 
 
 func _ready() -> void:
-	Signals.CharacterReady.connect(_start)
+	Signals.character_ready.connect(_start)
 	Signals.start_manager.emit(&"spawn_manager")
-	Signals.ToggleDisplay.emit(&"player_ui", &"", true)
-	Signals.UpdateTimer.emit()
-	Signals.SpawnCharacter.emit()
+	Signals.toggle_display.emit(&"player_ui", &"", true)
+	Signals.update_timer.emit()
+	Signals.spawn_character.emit()
 
 
 func _start(_character) -> void:
-	Signals.ShowStartTimer.emit()
+	Signals.show_start_timer.emit()
 
 
 func _exit_tree() -> void:
-	Signals.KillManager.emit(&"spawn_manager")
+	Signals.kill_manager.emit(&"spawn_manager")

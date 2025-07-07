@@ -21,8 +21,8 @@ var progress := []
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Signals.start_manager.connect(_start_manager)
-	Signals.KillManager.connect(_kill_manager)
-	Signals.LoadLevel.connect(_load_level)
+	Signals.kill_manager.connect(_kill_manager)
+	Signals.load_level.connect(_load_level)
 	level_loading_data.create_dict()
 
 
@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 
 func _load_level(id := &"", loading_screen := true) -> void:
 	#print("Received id: ", id)
-	if loading_screen: Signals.ToggleLoadingScreen.emit(true)
+	if loading_screen: Signals.toggle_loading_screen.emit(true)
 	to_load = id
 	level_data = null
 	load_complete = false
@@ -66,7 +66,7 @@ func _complete_load() -> void:
 	if not active_level.is_node_ready(): await active_level.ready
 	await get_tree().create_timer(EXTRA_TIME).timeout
 	get_tree().paused = false
-	Signals.ToggleLoadingScreen.emit(false)
+	Signals.toggle_loading_screen.emit(false)
 
 
 func _start_manager(id := &"") -> void:

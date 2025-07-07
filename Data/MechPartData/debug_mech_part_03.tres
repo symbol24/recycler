@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MechPartData" load_steps=2 format=3 uid="uid://dp6lholrxryu1"]
+
+[ext_resource type="Script" uid="uid://uundme0fcth8" path="res://Code/MechParts/mech_part_data.gd" id="1_dusht"]
+
+[resource]
+script = ExtResource("1_dusht")
+id = &"debug_mech_part_03"
+drop_uid = ""
+attachment_uid = ""
+stats = {
+&"damage": 1
+}
+level = 1
+metadata/_custom_type_script = "uid://uundme0fcth8"

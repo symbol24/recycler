@@ -1,35 +1,35 @@
 extends Node2D
 
-
 #Managers
-signal start_manager(id:StringName)
-signal KillManager(id:StringName)
-signal LoadLevel(id:StringName, loading_screen:bool)
-signal SpawnCharacter(pos:Vector2)
-signal InitNewRun()
-signal StartRunTimer()
-signal SpawnEnemyByType(type:EnemyData.Type)
-signal ToggleEnemySpawning(value:bool)
-signal EndRound()
-signal StartNextRound()
+signal start_manager(id: StringName)
+signal kill_manager(id: StringName)
+signal load_level(id: StringName, loading_screen: bool)
+signal spawn_character(pos: Vector2)
+signal init_new_run
+signal start_new_run
+signal spawn_enemy_by_type(type: EnemyData.Type)
+signal toggle_enemy_spawning(value: bool)
+signal end_round
+signal start_next_round
+signal spawn_mech_part(data:MechPartData, pos:Vector2)
 
 # Character
-signal CharacterReady(character:Character)
-signal ReticlePosition(pos:Vector2)
-signal SpawnReticle()
-signal ReticleReady(reticle:Sprite2D)
-signal CharacterDead(character:Character)
+signal character_ready(character: Character)
+signal reticle_position(pos: Vector2)
+signal spawn_reticle
+signal reticle_ready(reticle: Sprite2D)
+signal character_dead(character: Character)
 
 # UI
-signal ToggleDisplay(to_toggle:StringName, previous:StringName, display:bool)
-signal ToggleLoadingScreen(display:bool)
-signal SpawnDamageNumber(value:int, location:Vector2, type:Damage.Type)
-signal RemoveDamageNumber(dmgnbr:Label)
-signal HpUpdated(current_hp:int, max_hp:int)
-signal UpdateTimer(value:int)
-signal ShowStartTimer()
-signal DisplayPopup(id:StringName, is_large:bool, title:String, text:String, timed:bool)
-signal ReturnPopupResult(popup_id:StringName, result:bool)
+signal toggle_display(to_toggle: StringName, previous: StringName, display: bool)
+signal toggle_loading_screen(display: bool)
+signal spawn_damage_number(value: int, location: Vector2, type: Damage.Type)
+signal remove_damage_number(dmgnbr: Label)
+signal hp_updated(current_hp: int, max_hp: int)
+signal update_timer(value: int)
+signal show_start_timer
+signal display_popup(id: StringName, is_large: bool, title: String, text: String, timed: bool)
+signal return_pupup_result(popup_id: StringName, result: bool)
 
 # ENEMIES
-signal EnemyDead(location:Vector2, enemy:Enemy)
+signal enemy_dead(location: Vector2, enemy: Enemy)

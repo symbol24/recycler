@@ -17,8 +17,8 @@ var mouse_controls := true
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	Signals.ToggleDisplay.connect(_toggle_display)
-	Signals.ToggleLoadingScreen.connect(_toggle_loading_screen)
+	Signals.toggle_display.connect(_toggle_display)
+	Signals.toggle_loading_screen.connect(_toggle_loading_screen)
 
 
 func _toggle_display(to_toggle := &"", _previous := &"", display := true) -> void:

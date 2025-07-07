@@ -9,4 +9,4 @@ func display() -> void:
 	var tween:Tween = create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, position.y - distance), lifetime)
 	await  tween.finished
-	Signals.RemoveDamageNumber.emit(self)
+	Signals.remove_damage_number.emit(self)
