@@ -1,21 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dejuq2vl88y2i"]
+[gd_scene load_steps=4 format=3 uid="uid://bs8qq20nf2y6p"]
 
 [ext_resource type="Texture2D" uid="uid://ded3qft65fd7t" path="res://Textures/Debug/fourfour_pixel.png" id="1_nnoqa"]
 [ext_resource type="Script" uid="uid://cfx01okrycdhp" path="res://Code/MechParts/mech_part_drop.gd" id="2_48atm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_48atm"]
-radius = 6.0
+radius = 4.0
 
-[node name="MechPartDrop" type="Area2D"]
-collision_layer = 32
-collision_mask = 2
+[node name="MechPartDrop" type="Sprite2D"]
+texture = ExtResource("1_nnoqa")
 script = ExtResource("2_48atm")
 
-[node name="sprite" type="Sprite2D" parent="."]
+[node name="collect_area" type="Area2D" parent="."]
 unique_name_in_owner = true
-texture = ExtResource("1_nnoqa")
+collision_layer = 32
+collision_mask = 2
 
-[node name="collect_collider" type="CollisionShape2D" parent="."]
+[node name="collect_collider" type="CollisionShape2D" parent="collect_area"]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_48atm")
-debug_color = Color(1, 1, 0, 0.419608)
+debug_color = Color(1, 1, 0.156863, 0.419608)

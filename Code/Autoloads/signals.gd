@@ -12,6 +12,7 @@ signal toggle_enemy_spawning(value: bool)
 signal end_round
 signal start_next_round
 signal spawn_mech_part(data:MechPartData, pos:Vector2)
+signal return_mech_part_drop(drop:MechPartDrop)
 
 # Character
 signal character_ready(character: Character)

@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func toggle_display(value := false) -> void:
 	if value:
-		if Data.run_data.current_round >= Data.run_data.max_round_count:
+		if Data.run_data.current_round >= Data.run_data.MAXROUNDCOUNT:
 			round_label.text = "Run Complete! Final Boss defeated!"
 			btn_continue.hide()
 		else:
@@ -27,7 +27,7 @@ func toggle_display(value := false) -> void:
 
 
 func _main_menu_pressed() -> void:
-	if Data.run_data.current_round >= Data.run_data.max_round_count:
+	if Data.run_data.current_round >= Data.run_data.MAXROUNDCOUNT:
 		Signals.load_level.emit(&"main_menu", true)
 	else:
 		Signals.display_popup.emit(&"end_round_main_menu", true, "Return to Main Menu?", "Unsaved progression will be lost.", true)

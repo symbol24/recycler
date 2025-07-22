@@ -5,7 +5,7 @@ const DEBUGPLAYER := preload("uid://ce7w52outmc3j")
 const DEBUGENEMY := preload("uid://di07qeiu452uf")
 const DEBUGELITE := preload("uid://k7tu2lp68mil")
 const DEBUGBOSS := preload("uid://dreabhugaeeyt")
-const DEBUGMECHPART := preload("uid://bs8qq20nf2y6p")
+const DEBUGMECHPART := preload("uid://dejuq2vl88y2i")
 const PLAYCAMERA := "uid://blwon3x85h06h"
 const PLAYERSPAWN := Vector2(160, 90)
 const MINSPAWNTIME := 1.0
@@ -49,6 +49,7 @@ func _ready() -> void:
 	Signals.toggle_enemy_spawning.connect(_toggle_can_spawn_enemies)
 	Signals.spawn_enemy_by_type.connect(_spawn_enemy)
 	Signals.spawn_mech_part.connect(_spawn_mech_part)
+	Signals.return_mech_part_drop.connect(_return_mech_part_drop)
 
 
 func _process(delta: float) -> void:
@@ -185,3 +186,9 @@ func _get_mech_part_object() -> MechPartDrop:
 	if not _pool_mech_parts.is_empty(): return _pool_mech_parts.pop_front()
 
 	return DEBUGMECHPART.instantiate()
+
+
+func _return_mech_part_drop(part:MechPartDrop) -> void:
+	_player_layer.remove_child.call_deferred(part)
+	_pool_mech_parts.append(part)
+	

@@ -37,6 +37,7 @@ var total_exp := 0
 var current_level := 1
 var is_alive := false
 var mech_parts:Array[MechPartData] = []
+var round_pickups:Array[MechPartData] = []
 
 
 func setup_data() -> void:
@@ -44,6 +45,11 @@ func setup_data() -> void:
 	current_hp = max_hp
 	if not mech_parts.is_empty(): mech_parts.clear()
 	is_alive = true
+
+
+func pickup_merch_part_data(new:MechPartData) -> void:
+	assert(new != null, "Character data received null mech part data on pickup.")
+	round_pickups.append(new.duplicate(true))
 
 
 func add_mech_part_data(part:MechPartData = null) -> void:
@@ -58,7 +64,7 @@ func upgrade_mech_part(part:MechPartData = null) -> void:
 			if part.id == each.id:
 				to_upgrade = each
 				break
-		
+
 		if to_upgrade != null:
 			to_upgrade.level += 1
 

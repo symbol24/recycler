@@ -10,6 +10,13 @@ bg_color = Color(0.162066, 0.162066, 0.162065, 1)
 [resource]
 default_font_size = 8
 Button/font_sizes/font_size = 6
+EndPageStats/base_type = &"Label"
+EndPageStats/colors/font_color = Color(0.633757, 0.633757, 0.633757, 1)
+EndPageStats/font_sizes/font_size = 5
+EndPageStatsLabel/base_type = &"Label"
+EndPageStatsLabel/font_sizes/font_size = 5
+EndStatTitle/base_type = &"Label"
+EndStatTitle/font_sizes/font_size = 6
 LargePopupButton/base_type = &"Button"
 LargePopupPanel/base_type = &"Panel"
 LargePopupPanel/styles/panel = SubResource("StyleBoxFlat_i2lqi")

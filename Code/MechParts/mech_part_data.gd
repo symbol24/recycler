@@ -4,6 +4,7 @@ class_name MechPartData extends Resource
 @export var id := &""
 @export var drop_uid := ""
 @export var attachment_uid := ""
+@export var ui_texture_uid := ""
 @export var stats:Dictionary = {&"variable_name": 0.0}
 @export var level := 1
 

@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 		_flip_body()
 		move_and_slide()
 
-	
+
 func setup_character(new_data := debug_data) -> void:
 	assert(new_data != null, "Data is missing from %s." % name)
 	data = new_data.duplicate()

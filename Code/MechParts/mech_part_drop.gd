@@ -1,4 +1,4 @@
-class_name MechPartDrop extends Sprite2D
+class_name MechPartDrop extends Area2D
 
 
 const STARTANIMTIME := 0.15
@@ -12,6 +12,7 @@ var _target_pos := Vector2.ZERO
 var _height_diff := 0.0
 
 @onready var collect_collider: CollisionShape2D = %collect_collider
+@onready var sprite: Sprite2D = %sprite
 
 
 func setup_mech_part_drop(data:MechPartData, _pos:Vector2, _t_pos:Vector2) -> void:
@@ -26,7 +27,7 @@ func setup_mech_part_drop(data:MechPartData, _pos:Vector2, _t_pos:Vector2) -> vo
 	mech_part_data = data.duplicate(true)
 
 	if mech_part_data.drop_uid != "":
-		texture = load(mech_part_data.drop_uid) as CompressedTexture2D
+		sprite.texture = load(mech_part_data.drop_uid) as CompressedTexture2D
 
 
 func play_drop() -> void:
@@ -40,4 +41,13 @@ func play_drop() -> void:
 	tween.tween_property(self, "global_position", _start_pos, STARTANIMTIME/3)
 
 	await tween.finished
-	collect_collider.set_deferred(&"disabled", true)
+	collect_collider.set_deferred(&"disabled", false)
+
+
+func get_part() -> MechPartData:
+	get_tree().create_timer(0.1).timeout.connect(_return_part)
+	return mech_part_data
+
+
+func _return_part() -> void:
+	Signals.return_mech_part_drop.emit(self)
